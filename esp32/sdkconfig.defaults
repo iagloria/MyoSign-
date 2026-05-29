@@ -1,0 +1,38 @@
+# ============================================================
+# ESP32-S3 SDK 默认配置
+# ============================================================
+# 此文件在首次执行 idf.py set-target esp32s3 时自动合并到 sdkconfig
+# 如果你需要修改，请改这个文件后重新执行 set-target
+
+# ---- 目标芯片 ----
+CONFIG_IDF_TARGET="esp32s3"
+
+# ---- CPU 频率（240MHz 推荐，性能与功耗平衡）----
+CONFIG_ESP32S3_DEFAULT_CPU_FREQ_240=y
+
+# ---- FreeRTOS ----
+CONFIG_FREERTOS_HZ=1000
+CONFIG_FREERTOS_UNICORE=n              # 使用双核
+CONFIG_FREERTOS_MAX_TASK_NAME_LEN=16
+
+# ---- 日志级别 ----
+CONFIG_LOG_DEFAULT_LEVEL_INFO=y         # INFO 级别（调试时改 DEBUG）
+
+# ---- 蓝牙 BLE（NimBLE 栈）----
+CONFIG_BT_ENABLED=y
+CONFIG_BT_NIMBLE_ENABLED=y
+CONFIG_BT_NIMBLE_MAX_CONNECTIONS=2
+CONFIG_BT_NIMBLE_MAX_BONDS=0
+CONFIG_BT_NIMBLE_ATT_PREFERRED_MTU=512  # 大 MTU 减少分包
+
+# ---- 关闭 WiFi（本项目不需要，省电）----
+CONFIG_ESP_WIFI_ENABLED=n
+
+# ---- UART ----
+CONFIG_ESP_CONSOLE_UART_NUM=0           # 系统日志用 UART0
+
+# ---- 分区表 ----
+CONFIG_PARTITION_TABLE_SINGLE_APP=y     # 单应用分区（简单）
+
+# ---- 看门狗 ----
+CONFIG_ESP_TASK_WDT_TIMEOUT_S=10        # 任务看门狗超时 10 秒
